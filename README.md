@@ -300,7 +300,7 @@ kubectl -n client exec -it netshoot-client -- \
 
 ---
 
-# Debug drill: do this exactly like an interview
+# Debug drill
 
 ## Step 1 — Is it DNS?
 
@@ -339,7 +339,7 @@ kubectl get netpol -A
 kubectl -n app describe netpol deny-from-other-namespaces
 ```
 
-**Interview punchline:** “Service and endpoints exist, pods are ready, DNS resolves, but cross-namespace traffic times out → check NetworkPolicy.”
+**Punchline:** “Service and endpoints exist, pods are ready, DNS resolves, but cross-namespace traffic times out → check NetworkPolicy.”
 
 ---
 
@@ -701,8 +701,6 @@ kubectl -n client exec -it deploy/client-tools-netshoot-client -- \
 kubectl get netpol -A
 kubectl -n app describe netpol
 ```
-
-Your interview line:
 
 > “DNS resolves, service exists, endpoints exist, pod is ready—but cross-namespace traffic times out. Next I check NetworkPolicies (and CNI/policy engine) because this looks like a blocked path, not an app crash.”
 
