@@ -654,7 +654,7 @@ Enable NetworkPolicy allowing only `app` namespace (blocks `client` → timeout)
 ```bash
 helm upgrade echo ./echo-app -n app \
   --set networkPolicy.enabled=true \
-  --set networkPolicy.allowFromNamespaces[0]=app
+  --set 'networkPolicy.allowFromNamespaces[0]=app'
 ```
 
 Now test again from client:
@@ -709,10 +709,10 @@ kubectl -n app describe netpol
 # 8) Fix it (allow `client` namespace)
 
 ```bash
-helm upgrade echo ./echo-app -n app \
-  --set networkPolicy.enabled=true \
-  --set networkPolicy.allowFromNamespaces[0]=app \
-  --set networkPolicy.allowFromNamespaces[1]=client
+helm upgrade echo ./echo-app -n app \                              
+  --set networkPolicy.enabled=true \                             
+  --set 'networkPolicy.allowFromNamespaces[0]=app' \
+  --set 'networkPolicy.allowFromNamespaces[1]=client'
 ```
 
 Retest:

@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-from-other-namespaces
+  namespace: app
+spec:
+  podSelector:
+    matchLabels:
+      app: echo
+  policyTypes:
+  - Ingress
+  ingress:
+  # Only allow traffic from pods in the SAME namespace that have label allow=true
+  - from:
+    - podSelector:
+        matchLabels:
+          allow: "true"

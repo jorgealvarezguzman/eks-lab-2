@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "netshoot-client.fullname" . }}
+  labels:
+    {{- include "netshoot-client.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "netshoot-client.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "netshoot-client.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: netshoot
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command: ["sleep", "360000"]

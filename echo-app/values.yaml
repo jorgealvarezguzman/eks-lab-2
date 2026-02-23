@@ -1,0 +1,37 @@
+replicaCount: 2
+
+image:
+  repository: ealen/echo-server
+  tag: latest
+
+service:
+  port: 80
+
+networkPolicy:
+  enabled: false
+  # When enabled, allow ingress only from namespaces listed here.
+  allowFromNamespaces:
+    - app
+
+serviceAccount:
+  create: false
+  annotations: {}
+  name: ""
+
+ingress:
+  enabled: false
+
+autoscaling:
+  enabled: false
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+service:
+  type: ClusterIP
+  port: 80
